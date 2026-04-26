@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>弘峻莊園-專業拆款系統</title>
+    <title>弘峻莊園-專屬拆款系統</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap');
 
@@ -33,6 +33,7 @@
             flex-direction: column;
         }
 
+        /* 頂部視覺區：使用無文字底圖 */
         .header {
             flex-shrink: 0;
             height: 28dvh;
@@ -40,7 +41,9 @@
             background-size: cover;
             background-position: center;
             position: relative;
-            border-bottom: 5px solid var(--brand-gold);
+            border-bottom: 4px solid var(--brand-gold);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .header-overlay {
@@ -103,7 +106,7 @@
         .table-section {
             flex-grow: 1;
             padding: 5px 20px;
-            overflow-y: auto; /* 允許小螢幕微幅滾動表格內容 */
+            overflow-y: auto;
             -webkit-overflow-scrolling: touch;
         }
 
@@ -129,11 +132,13 @@
         .col-ratio { color: #aaa; text-align: center; width: 50px; font-size: 11px; }
         .col-val { text-align: right; font-weight: 700; width: 110px; color: #000; }
 
-        /* 合計總額欄位：墨綠底白字 */
+        /* 合計總額：品牌墨綠底白字 */
         .total-row {
             background-color: var(--brand-dark) !important;
             color: #ffffff !important;
             font-size: 17px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .total-row td {
@@ -167,21 +172,18 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* 強化列印修正 */
         @media print {
             body, html { overflow: visible !important; height: auto !important; }
             .phone-container { height: auto !important; position: static !important; display: block !important; }
             .btn-section, .input-section { display: none !important; }
-            .header { height: 180px !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .table-section { overflow: visible !important; padding: 0 !important; }
-            .total-row { background-color: #1a302b !important; color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .header { height: 180px !important; }
+            .total-row { background-color: #1a302b !important; color: white !important; }
             .total-amount-val { color: white !important; }
-            table { page-break-inside: avoid; }
         }
 
         @media screen and (max-height: 750px) {
             .header { height: 26dvh; }
-            td { padding: 8px 5px; font-size: 13px; }
+            td { padding: 7px 5px; font-size: 13px; }
             .brand-title { font-size: 24px; }
         }
     </style>
@@ -202,7 +204,7 @@
     </div>
 
     <div class="table-section">
-        <table id="mainTable">
+        <table>
             <tbody id="resultList"></tbody>
             <tfoot>
                 <tr class="total-row">
