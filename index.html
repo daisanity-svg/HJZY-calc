@@ -32,14 +32,14 @@
             flex-direction: column;
         }
 
-        /* 標頭區域：使用新底圖 */
+        /* 再次縮減圖片區域高度，確保鍵盤彈出時不遮擋 */
         .header-container {
             flex-shrink: 0;
             width: 100%;
-            height: 25dvh;
+            height: 15dvh; /* 從 22dvh 縮減到 15dvh */
             position: relative;
             overflow: hidden;
-            border-bottom: 4px solid var(--brand-gold);
+            border-bottom: 3px solid var(--brand-gold);
         }
 
         .header-img {
@@ -52,36 +52,34 @@
         .header-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(26, 48, 43, 0.15); /* 輕微遮罩提升文字辨識 */
+            background: rgba(26, 48, 43, 0.1);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
 
         .brand-title {
             margin: 0;
-            font-size: 28px;
-            letter-spacing: 12px;
+            font-size: 22px;
+            letter-spacing: 8px;
             color: var(--brand-gold);
             font-weight: 700;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-            padding-left: 12px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            padding-left: 8px;
         }
 
-        /* 輸入區域 */
+        /* 輸入區域：更加緊湊 */
         .input-section {
-            padding: 12px 20px;
+            padding: 8px 15px;
             background: var(--brand-light);
             flex-shrink: 0;
             border-bottom: 1px solid #ddd;
-            z-index: 10;
         }
 
         .row-grid {
             display: flex;
-            gap: 15px;
-            margin-bottom: 10px;
+            gap: 10px;
+            margin-bottom: 6px;
         }
 
         .input-group {
@@ -91,38 +89,42 @@
         }
 
         .input-group label {
-            font-size: 10px;
+            font-size: 9px;
             color: #888;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             font-weight: bold;
-            letter-spacing: 1px;
         }
 
         .input-group input {
-            padding: 6px 0;
+            padding: 4px 0;
             border: none;
-            border-bottom: 1.5px solid var(--brand-gold);
+            border-bottom: 1px solid var(--brand-gold);
             background: transparent;
             font-family: 'Noto Serif TC', serif;
             outline: none;
-            font-size: 16px;
+            font-size: 14px;
             color: var(--brand-dark);
             width: 100%;
         }
 
         .total-wrapper {
             text-align: center;
-            border-top: 1px dashed #ccc;
-            padding-top: 10px;
+            padding-top: 5px;
+        }
+
+        .total-wrapper label {
+            font-size: 9px;
+            color: #888;
+            display: block;
         }
 
         .total-wrapper input {
-            width: 160px;
-            font-size: 24px;
+            width: 130px;
+            font-size: 18px;
             font-weight: bold;
             text-align: center;
             border: none;
-            border-bottom: 2px solid var(--brand-gold);
+            border-bottom: 1.5px solid var(--brand-gold);
             background: transparent;
             outline: none;
             color: var(--brand-dark);
@@ -131,38 +133,37 @@
         /* 表格區域 */
         .table-section {
             flex-grow: 1;
-            padding: 5px 20px;
+            padding: 5px 15px;
             overflow-y: auto;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         td {
-            padding: 11px 5px;
+            padding: 8px 5px;
             border-bottom: 1px solid #eee;
         }
 
-        .col-name { font-weight: 700; color: var(--brand-dark); }
-        .col-ratio { color: #999; text-align: center; width: 50px; font-size: 11px; }
-        .col-val { text-align: right; font-weight: 700; width: 100px; color: #000; }
-
-        /* 資訊列：列印時才出現 */
         .info-row {
             display: none; 
+            background-color: #fcfcfc;
         }
         
         .info-row td {
-            padding: 12px 5px;
-            border-bottom: 2px solid var(--brand-gold);
+            padding: 10px 5px;
+            border-bottom: 1px solid var(--brand-gold);
             color: var(--brand-gold);
-            font-size: 14px;
+            font-size: 12px;
             font-weight: bold;
-            background-color: #fcfcfc;
         }
+
+        .col-name { font-weight: 700; color: var(--brand-dark); }
+        .col-ratio { color: #999; text-align: center; width: 45px; font-size: 10px; }
+        .col-val { text-align: right; font-weight: 700; width: 90px; color: #000; }
 
         .total-row {
             background-color: var(--brand-dark) !important;
@@ -170,16 +171,15 @@
         }
 
         .total-row td {
-            padding: 18px 5px;
+            padding: 12px 5px;
             border-top: 2px solid var(--brand-gold);
             font-weight: 700;
-            font-size: 16px;
-            color: #ffffff !important;
+            font-size: 14px;
         }
 
-        /* 操作按鈕 */
+        /* 按鈕區域 */
         .btn-section {
-            padding: 12px 25px 20px;
+            padding: 10px 20px 15px;
             flex-shrink: 0;
         }
 
@@ -188,28 +188,21 @@
             background-color: var(--brand-gold);
             color: white;
             border: none;
-            padding: 14px;
-            font-size: 14px;
-            letter-spacing: 3px;
+            padding: 12px;
+            font-size: 13px;
+            letter-spacing: 2px;
             border-radius: 4px;
             font-family: 'Noto Serif TC', serif;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
         }
 
         @media print {
             body, html { overflow: visible !important; height: auto !important; }
             .phone-container { height: auto !important; display: block !important; }
             .btn-section, .input-section { display: none !important; }
-            .header-container { height: 180px !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            
-            .info-row { 
-                display: table-row !important; 
-                -webkit-print-color-adjust: exact; 
-                print-color-adjust: exact; 
-            }
-            
+            .header-container { height: 160px !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .info-row { display: table-row !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .total-row { background-color: #1a302b !important; color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .total-row td { color: #ffffff !important; }
         }
@@ -229,23 +222,22 @@
         <div class="row-grid">
             <div class="input-group">
                 <label>戶別 UNIT</label>
-                <input type="text" id="unitInput" placeholder="點此輸入" oninput="calculate()">
+                <input type="text" id="unitInput" placeholder="輸入戶別" oninput="calculate()">
             </div>
             <div class="input-group">
                 <label>車位 PARKING</label>
-                <input type="text" id="parkInput" placeholder="點此輸入" oninput="calculate()">
+                <input type="text" id="parkInput" placeholder="輸入車位" oninput="calculate()">
             </div>
         </div>
         <div class="total-wrapper">
-            <label style="font-size:10px; color:#888; display:block; margin-bottom:4px; letter-spacing:1px;">物業總額 (萬元)</label>
+            <label>物業總額 (萬元)</label>
             <input type="number" id="totalPrice" value="733" oninput="calculate()" pattern="[0-9]*" inputmode="numeric">
         </div>
     </div>
 
     <div class="table-section">
         <table>
-            <tbody id="rowList">
-            </tbody>
+            <tbody id="rowList"></tbody>
             <tfoot>
                 <tr class="total-row">
                     <td>合計總額 (TOTAL)</td>
@@ -263,8 +255,8 @@
 
 <script>
     function calculate() {
-        const u = document.getElementById('unitInput').value || "未填寫";
-        const p = document.getElementById('parkInput').value || "未填寫";
+        const u = document.getElementById('unitInput').value || "—";
+        const p = document.getElementById('parkInput').value || "—";
 
         const val = parseFloat(document.getElementById('totalPrice').value) || 0;
         const dep = 5;
@@ -308,7 +300,6 @@
         document.getElementById('rowList').innerHTML = h;
         document.getElementById('totalDisplay').innerText = val.toLocaleString() + " 萬";
     }
-
     calculate();
 </script>
 
