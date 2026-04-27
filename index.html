@@ -67,22 +67,28 @@
             padding-left: 8px;
         }
 
-        /* 輸入區域優化：支援四欄顯示 */
+        /* 輸入區域：解決被切掉的問題 */
         .input-section {
-            padding: 8px 12px;
+            padding: 10px 12px;
             background: var(--brand-light);
             flex-shrink: 0;
             border-bottom: 1px solid #ddd;
         }
 
-        .row-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px 15px;
-            margin-bottom: 8px;
+        /* 改為垂直堆疊或更緊湊的佈局 */
+        .grid-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
         }
 
         .input-group {
+            flex: 1;
             display: flex;
             flex-direction: column;
         }
@@ -92,16 +98,20 @@
             color: #888;
             margin-bottom: 2px;
             font-weight: bold;
+            white-space: nowrap;
         }
 
         .input-wrapper {
             display: flex;
-            align-items: baseline;
-            border-bottom: 1px solid var(--brand-gold);
+            align-items: center;
+            border-bottom: 1.5px solid var(--brand-gold);
+            background: rgba(255,255,255,0.5);
+            padding: 2px 4px;
         }
 
         .input-wrapper input {
             flex: 1;
+            width: 100%;
             padding: 4px 0;
             border: none;
             background: transparent;
@@ -109,35 +119,41 @@
             outline: none;
             font-size: 14px;
             color: var(--brand-dark);
-            min-width: 0;
+            min-width: 0; /* 防止 input 撐開 container */
         }
 
         .unit-label {
             font-size: 10px;
-            color: #aaa;
-            margin-left: 3px;
+            color: #b5945d;
+            margin-left: 2px;
+            font-weight: bold;
         }
 
         .total-wrapper {
             text-align: center;
-            padding-top: 4px;
+            margin-top: 5px;
+            padding-top: 5px;
             border-top: 1px dashed #ccc;
-            margin-top: 4px;
+        }
+
+        .total-wrapper label {
+            font-size: 9px;
+            color: #888;
+            display: block;
         }
 
         .total-wrapper input {
             width: 120px;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             text-align: center;
             border: none;
-            border-bottom: 1.5px solid var(--brand-gold);
+            border-bottom: 2px solid var(--brand-gold);
             background: transparent;
             outline: none;
             color: var(--brand-dark);
         }
 
-        /* 表格區域 */
         .table-section {
             flex-grow: 1;
             padding: 5px 12px;
@@ -155,7 +171,6 @@
             border-bottom: 1px solid #eee;
         }
 
-        /* 列印資訊行：四欄併排呈現 */
         .info-row {
             display: none; 
             background-color: #fcfcfc;
@@ -191,7 +206,6 @@
             font-size: 14px;
         }
 
-        /* 按鈕區域 */
         .btn-section {
             padding: 8px 20px 12px;
             flex-shrink: 0;
@@ -233,36 +247,42 @@
     </div>
 
     <div class="input-section">
-        <div class="row-grid">
-            <div class="input-group">
-                <label>戶別 UNIT</label>
-                <div class="input-wrapper">
-                    <input type="text" id="unitInput" placeholder="例: A1-5F" oninput="calculate()">
+        <div class="grid-container">
+            <!-- 第一排：戶別與坪數 -->
+            <div class="input-row">
+                <div class="input-group">
+                    <label>戶別 UNIT</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="unitInput" placeholder="輸入戶別" oninput="calculate()">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>戶別坪數 SIZE</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="sizeInput" placeholder="0.00" oninput="calculate()" step="0.01">
+                        <span class="unit-label">坪</span>
+                    </div>
                 </div>
             </div>
-            <div class="input-group">
-                <label>戶別坪數 SIZE</label>
-                <div class="input-wrapper">
-                    <input type="number" id="sizeInput" placeholder="0.00" oninput="calculate()" step="0.01">
-                    <span class="unit-label">坪</span>
+            <!-- 第二排：車位與車位價格 -->
+            <div class="input-row">
+                <div class="input-group">
+                    <label>車位 PARKING</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="parkInput" placeholder="輸入車位" oninput="calculate()">
+                    </div>
                 </div>
-            </div>
-            <div class="input-group">
-                <label>車位 PARKING</label>
-                <div class="input-wrapper">
-                    <input type="text" id="parkInput" placeholder="例: B1-102" oninput="calculate()">
-                </div>
-            </div>
-            <div class="input-group">
-                <label>車位價格 PRICE</label>
-                <div class="input-wrapper">
-                    <input type="number" id="parkPriceInput" placeholder="0" oninput="calculate()">
-                    <span class="unit-label">萬</span>
+                <div class="input-group">
+                    <label>車位價格 PRICE</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="parkPriceInput" placeholder="0" oninput="calculate()">
+                        <span class="unit-label">萬</span>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="total-wrapper">
-            <label style="font-size:9px; color:#888;">物業總額 (萬元)</label>
+            <label>物業總額 (萬元)</label>
             <input type="number" id="totalPrice" value="733" oninput="calculate()" pattern="[0-9]*" inputmode="numeric">
         </div>
     </div>
@@ -299,8 +319,8 @@
         const e2 = Math.round(val * 0.02);
         const e3 = Math.round(val * 0.02);
         const bank = Math.floor(val * 0.80);
-        const hand = Math.ceil(val * 0.05);
-        const seal = val - (dep + sign + e1 + e2 + e3 + bank + hand);
+        const handOver = Math.ceil(val * 0.05);
+        const seal = val - (dep + sign + e1 + e2 + e3 + bank + handOver);
 
         const items = [
             { n: "訂金", r: "固定", v: dep },
@@ -310,10 +330,9 @@
             { n: "工程款第三期 - 第三區屋頂版完成", r: "2%", v: e3 },
             { n: "備證用印款", r: "3%", v: seal },
             { n: "銀行貸款", r: "80%", v: bank },
-            { n: "交屋保留款", r: "5%", v: hand }
+            { n: "交屋保留款", r: "5%", v: handOver }
         ];
 
-        // 列印時完整呈現四欄位
         let h = `
             <tr class="info-row">
                 <td colspan="3">
