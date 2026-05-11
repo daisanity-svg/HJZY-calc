@@ -5,66 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>弘峻莊園-專屬拆款系統</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap');
     :root{
-      --brand-dark:#073f35;
-      --brand-deep:#06362f;
-      --brand-gold:#b9975b;
-      --brand-light:#f6f1e7;
-      --paper:#f6f3ec;
-      --ink:#10231f;
-      --muted:#66736f;
-      --line:#ded4c3;
+      --bg:#e9edf7;
+      --bg2:#d4daed;
+      --line:#111;
+      --ink:#050505;
       --white:#fff;
+      --accent:#cfd6eb;
     }
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-    body,html{margin:0;padding:0;width:100%;height:100%;font-family:'Noto Serif TC',serif;background:#efe6d4;color:var(--ink);}
-    body{overflow:hidden;}
-    .app{width:min(100%,820px);height:100dvh;margin:0 auto;background:#fff;display:flex;flex-direction:column;box-shadow:0 0 28px rgba(0,0,0,.08);}
-    .hero{height:138px;flex-shrink:0;padding:26px 28px;background:linear-gradient(135deg,#073f35 0%,#073f35 58%,#052c27 100%);border-bottom:5px solid var(--brand-gold);position:relative;overflow:hidden;color:#fff;}
-    .hero:before{content:"";position:absolute;inset:-35% -12% auto auto;width:360px;height:280px;border:2px solid rgba(185,151,91,.55);transform:rotate(17deg);}
-    .hero:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 92px);opacity:.35;}
-    .eyebrow{position:relative;z-index:1;margin:0 0 10px;font-size:13px;letter-spacing:7px;color:#e8cfaa;font-weight:900;}
-    .title{position:relative;z-index:1;margin:0;font-size:42px;letter-spacing:5px;line-height:1;color:#fff;font-weight:900;}
-    .subtitle{position:relative;z-index:1;margin:12px 0 0;font-size:15px;letter-spacing:2px;color:#e6ebe8;font-weight:700;}
-    .input-section{flex-shrink:0;padding:14px 18px 12px;background:var(--paper);border-bottom:1px solid var(--line);}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;}
-    .field{min-width:0;}
-    .field label{display:flex;justify-content:space-between;align-items:center;margin:0 0 4px;font-size:12px;color:var(--muted);font-weight:900;}
-    .field label span{font-size:11px;letter-spacing:3px;color:#9a7f57;}
-    .control{display:flex;align-items:center;min-height:46px;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;}
-    .control input,.control select{width:100%;border:0;outline:none;background:transparent;padding:10px 12px;font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:var(--ink);min-width:0;}
-    .control input::placeholder{color:#b8b2a7;}
-    .control select{appearance:none;-webkit-appearance:none;}
-    .unit{padding:0 12px;color:#9b733c;font-size:15px;font-weight:900;white-space:nowrap;}
-    .total-card{margin-top:12px;border:1px solid #d9c7a5;background:linear-gradient(90deg,#f9f4e9,#f7fbf8);border-radius:12px;padding:10px 12px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;}
-    .total-label{font-size:16px;font-weight:900;color:#5c6a66;}
-    .total-sub{font-size:11px;color:#9a7f57;font-weight:700;margin-top:2px;}
-    .total-value{font-size:36px;line-height:1;font-weight:900;color:#071d19;text-align:right;}
-    .total-value small{font-size:16px;color:#9b733c;margin-left:5px;}
-    .table-section{flex:1;overflow:auto;padding:12px 18px 16px;background:#fff;}
-    .screen-title{display:flex;justify-content:space-between;align-items:flex-end;margin:2px 0 10px;}
-    .screen-title h2{margin:0;font-size:19px;letter-spacing:1px;color:var(--ink);}
-    .screen-title .time{font-size:10px;color:#888;font-weight:700;}
-    table{width:100%;border-collapse:collapse;font-size:13px;}
-    th,td{border:1px solid #ebe5da;padding:9px 10px;text-align:left;}
-    th{background:#faf8f2;color:#4d5b57;font-weight:900;}
-    td.note{font-size:11px;color:#4d5b57;font-weight:700;}
-    td.ratio{text-align:right;font-weight:900;width:110px;}
-    td.amount{text-align:right;font-weight:900;font-size:18px;width:110px;}
-    .screen-total td{background:var(--brand-dark)!important;color:#fff!important;border-top:4px solid var(--brand-gold);font-size:18px;font-weight:900;}
-    .screen-total .amount{font-size:26px;}
-    .btn-section{flex-shrink:0;padding:10px 18px 14px;background:#fff;border-top:1px solid var(--line);}
-    .print-btn{width:100%;border:0;border-radius:10px;background:var(--brand-gold);color:#fff;padding:14px;font-family:'Noto Serif TC',serif;font-size:14px;letter-spacing:3px;font-weight:900;cursor:pointer;}
+    html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#fff;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;}
+    .app{width:min(100%,900px);height:100dvh;margin:0 auto;background:var(--bg);display:flex;flex-direction:column;border-left:1px solid #fff;border-right:1px solid #fff;}
+    .top-title{height:54px;flex-shrink:0;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;letter-spacing:2px;border-bottom:2px solid var(--line);}
+    .input-grid{flex-shrink:0;display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:2px solid var(--line);background:var(--bg);}
+    .cell{min-height:96px;border-right:2px solid var(--line);border-bottom:2px solid var(--line);padding:8px 8px 6px;display:flex;flex-direction:column;gap:6px;}
+    .cell:nth-child(3n){border-right:0;}
+    .cell:nth-child(n+4){border-bottom:0;background:var(--bg2);}
+    .cell-label{font-size:28px;line-height:1.15;font-weight:500;letter-spacing:1px;}
+    .cell input{width:100%;height:44px;border:0;background:rgba(255,255,255,.55);outline:none;font-size:24px;font-weight:700;padding:4px 8px;color:#000;}
+    .cell input::placeholder{color:#777;font-weight:500;}
+    .price-wrap{display:flex;align-items:center;background:rgba(255,255,255,.55);height:44px;}
+    .price-wrap input{background:transparent;min-width:0;}
+    .unit{font-size:20px;font-weight:800;padding-right:8px;white-space:nowrap;}
+    .floor-options{display:flex;flex-direction:column;gap:7px;margin-left:16px;margin-top:2px;}
+    .floor-btn{border:0;background:transparent;font-size:28px;text-align:left;line-height:1.1;padding:0 0 0 24px;position:relative;font-weight:500;cursor:pointer;color:#000;}
+    .floor-btn:before{content:'○';position:absolute;left:0;top:0;font-size:20px;line-height:34px;}
+    .floor-btn.active:before{content:'●';}
+    .settle-box{flex-shrink:0;background:var(--bg);border-bottom:2px solid #fff;display:grid;grid-template-columns:1fr auto;align-items:center;min-height:70px;padding:8px 22px;}
+    .settle-label{font-size:30px;font-weight:500;text-align:center;grid-column:1/3;margin-bottom:2px;}
+    .settle-sub{font-size:16px;color:#333;font-weight:600;}
+    .settle-total{font-size:32px;font-weight:900;text-align:right;}
+    .settle-total small{font-size:20px;margin-left:4px;}
+    .calc-title{flex-shrink:0;height:54px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:31px;font-weight:500;border-bottom:1px solid #fff;}
+    .breakdown{flex:1;overflow:auto;background:var(--bg);padding:0;}
+    .breakdown table{width:100%;border-collapse:collapse;font-size:16px;background:rgba(255,255,255,.25);}
+    .breakdown th{position:sticky;top:0;background:#eef1fa;border-bottom:1px solid #fff;padding:9px 8px;text-align:left;font-size:15px;z-index:1;}
+    .breakdown td{border-bottom:1px solid #fff;padding:9px 8px;font-weight:700;vertical-align:middle;}
+    .breakdown .note{font-size:12px;color:#333;font-weight:600;}
+    .breakdown .ratio{text-align:right;width:82px;}
+    .breakdown .amount{text-align:right;width:98px;font-size:20px;font-weight:900;}
+    .bottom-settle{flex-shrink:0;height:68px;background:var(--bg);display:grid;grid-template-columns:1fr auto;align-items:center;border-top:2px solid #fff;border-bottom:2px solid #fff;padding:0 22px;}
+    .bottom-settle .label{font-size:30px;font-weight:500;text-align:center;grid-column:1/3;line-height:1;}
+    .bottom-settle .total-line{grid-column:1/3;display:flex;justify-content:space-between;align-items:center;font-size:18px;font-weight:700;margin-top:-2px;}
+    .bottom-settle .total-line b{font-size:24px;}
+    .print-bar{height:92px;flex-shrink:0;background:var(--accent);display:flex;align-items:center;justify-content:center;padding:12px 24px;}
+    .print-btn{width:100%;height:64px;border:0;background:transparent;color:#000;font-size:32px;font-weight:500;letter-spacing:2px;cursor:pointer;}
     .print-page{display:none;}
+    @media(max-width:640px){
+      .top-title{height:44px;font-size:24px;}
+      .cell{min-height:86px;padding:6px;}
+      .cell-label{font-size:22px;}
+      .cell input{font-size:20px;height:38px;}
+      .floor-btn{font-size:23px;}
+      .calc-title{height:46px;font-size:25px;}
+      .settle-label,.bottom-settle .label{font-size:24px;}
+      .print-btn{font-size:26px;}
+      .print-bar{height:76px;}
+      .breakdown th{font-size:12px;}
+      .breakdown td{font-size:13px;padding:8px 5px;}
+      .breakdown .note{font-size:10px;}
+      .breakdown .amount{font-size:16px;width:78px;}
+      .breakdown .ratio{width:62px;}
+    }
     @page{size:A4 portrait;margin:0;}
     @media print{
-      body,html{width:210mm;height:297mm;background:#fff!important;overflow:visible!important;}
+      html,body{width:210mm;height:297mm;background:#fff!important;overflow:visible!important;}
       .app{display:none!important;}
-      .print-page{display:block!important;width:210mm;height:297mm;background:var(--paper);padding:11mm 14mm 13mm;position:relative;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-      .print-hero{height:36mm;background:linear-gradient(135deg,#073f35,#06352f);border-bottom:2mm solid var(--brand-gold);position:relative;overflow:hidden;color:#fff;padding:7mm 8mm;}
+      .print-page{display:block!important;width:210mm;height:297mm;background:#f6f3ec;padding:11mm 14mm 13mm;position:relative;color:#10231f;-webkit-print-color-adjust:exact;print-color-adjust:exact;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;}
+      .print-hero{height:36mm;background:linear-gradient(135deg,#073f35,#06352f);border-bottom:2mm solid #b9975b;position:relative;overflow:hidden;color:#fff;padding:7mm 8mm;}
       .print-hero:before{content:"";position:absolute;right:-6mm;top:-16mm;width:70mm;height:54mm;border:1px solid rgba(185,151,91,.55);transform:rotate(16deg);}
-      .print-hero:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 25mm);}
       .print-eyebrow{position:relative;z-index:1;font-size:8.5pt;letter-spacing:4px;color:#e8cfaa;font-weight:900;margin-bottom:6mm;}
       .print-logo{position:relative;z-index:1;text-align:center;margin-top:-2mm;font-size:25pt;letter-spacing:4px;font-weight:900;line-height:1;color:#fff;}
       .print-logo small{display:block;margin-top:2mm;font-size:8pt;letter-spacing:7px;color:#e8e8e1;}
@@ -76,13 +85,13 @@
       .report-head h1{margin:0;font-size:16pt;letter-spacing:1px;color:#0b201c;font-weight:900;}
       .report-time{font-size:8pt;color:#666;font-weight:900;}
       .print-table{width:100%;border-collapse:collapse;background:#fff;font-size:9.5pt;}
-      .print-table th,.print-table td{border:1px solid #ded8ce;padding:4.1mm 3.5mm;}
-      .print-table th{background:#f8f5ed;color:#293c38;font-weight:900;text-align:left;}
+      .print-table th,.print-table td{border:1px solid #ded8ce;padding:4.1mm 3.5mm;text-align:left;}
+      .print-table th{background:#f8f5ed;color:#293c38;font-weight:900;}
       .print-table td{font-weight:900;color:#1b2c28;}
       .print-table .p-note{font-size:8pt;color:#43524f;font-weight:700;}
       .print-table .p-ratio{text-align:right;width:26mm;font-size:9pt;}
       .print-table .p-amount{text-align:right;width:26mm;font-size:15pt;font-weight:900;white-space:nowrap;}
-      .print-total td{background:#073f35!important;color:#fff!important;border-top:2mm solid var(--brand-gold)!important;padding:5mm 3.5mm!important;}
+      .print-total td{background:#073f35!important;color:#fff!important;border-top:2mm solid #b9975b!important;padding:5mm 3.5mm!important;}
       .print-total .total-word{font-size:13pt;line-height:1.05;}
       .print-total .total-word small{display:block;font-size:6.5pt;letter-spacing:1px;margin-top:1mm;color:#f1eadc;}
       .print-total .p-ratio{font-size:11pt;color:#fff!important;}
@@ -93,81 +102,51 @@
 </head>
 <body>
   <div class="app">
-    <header class="hero">
-      <div class="eyebrow">PAYMENT CALCULATOR</div>
-      <h1 class="title">弘峻莊園</h1>
-      <div class="subtitle">專屬拆款計算機</div>
-    </header>
-    <section class="input-section">
-      <div class="grid">
-        <div class="field"><label>戶別 <span>UNIT</span></label><div class="control"><input id="unitInput" type="text" placeholder="例如 A1-5F" oninput="calculate()"></div></div>
-        <div class="field"><label>坪數 <span>SIZE</span></label><div class="control"><input id="sizeInput" type="number" placeholder="0.00" step="0.01" oninput="calculate()"><b class="unit">坪</b></div></div>
-        <div class="field"><label>房屋價格 <span>HOUSE</span></label><div class="control"><input id="housePriceInput" type="number" value="733" placeholder="0" inputmode="numeric" oninput="calculate()"><b class="unit">萬</b></div></div>
-        <div class="field"><label>車位樓層 <span>FLOOR</span></label><div class="control"><select id="parkingFloorInput" onchange="calculate()"><option value="B1">B1</option><option value="B2">B2</option></select></div></div>
-        <div class="field"><label>車位編號 <span>NUMBER</span></label><div class="control"><input id="parkingNumberInput" type="text" placeholder="例如 321" oninput="calculate()"></div></div>
-        <div class="field"><label>車位價格 <span>PRICE</span></label><div class="control"><input id="parkPriceInput" type="number" placeholder="0" inputmode="numeric" oninput="calculate()"><b class="unit">萬</b></div></div>
-      </div>
-      <div class="total-card">
-        <div><div class="total-label">物業總額</div><div class="total-sub">自動帶入：房屋價格＋車位價格</div></div>
-        <div class="total-value"><span id="screenTotalValue">733</span><small>萬</small></div>
-      </div>
+    <div class="top-title">表頭</div>
+    <section class="input-grid">
+      <div class="cell"><div class="cell-label">戶別</div><input id="unitInput" type="text" placeholder="A1-5" oninput="calculate()"></div>
+      <div class="cell"><div class="cell-label">坪數</div><div class="price-wrap"><input id="sizeInput" type="number" placeholder="0.00" step="0.01" oninput="calculate()"><span class="unit">坪</span></div></div>
+      <div class="cell"><div class="cell-label">房屋<br>價格</div><div class="price-wrap"><input id="housePriceInput" type="number" value="733" placeholder="0" inputmode="numeric" oninput="calculate()"><span class="unit">萬</span></div></div>
+      <div class="cell"><div class="cell-label">車位<br>樓層</div><div class="floor-options"><button class="floor-btn active" type="button" data-floor="B1" onclick="setFloor('B1')">B1</button><button class="floor-btn" type="button" data-floor="B2" onclick="setFloor('B2')">B2</button></div></div>
+      <div class="cell"><div class="cell-label">車位<br>編號</div><input id="parkingNumberInput" type="text" placeholder="321" oninput="calculate()"></div>
+      <div class="cell"><div class="cell-label">車位<br>價格</div><div class="price-wrap"><input id="parkPriceInput" type="number" placeholder="0" inputmode="numeric" oninput="calculate()"><span class="unit">萬</span></div></div>
     </section>
-    <section class="table-section">
-      <div class="screen-title"><h2>拆款計算明細</h2><span class="time" id="screenTime"></span></div>
-      <table>
-        <thead><tr><th>款項</th><th>備註</th><th>拆款方式</th><th>金額</th></tr></thead>
-        <tbody id="screenRows"></tbody>
-        <tfoot><tr class="screen-total"><td colspan="2">合計總額 TOTAL</td><td class="ratio">100%</td><td class="amount" id="screenTotalAmount">733 萬</td></tr></tfoot>
-      </table>
-    </section>
-    <div class="btn-section"><button class="print-btn" onclick="window.print()">產生正式報表 | PRINT</button></div>
+    <section class="settle-box"><div class="settle-label">總價</div><div class="settle-sub">房屋價格＋車位價格</div><div class="settle-total"><span id="screenTotalValue">733</span><small>萬</small></div></section>
+    <div class="calc-title">拆款</div>
+    <section class="breakdown"><table><thead><tr><th>款項</th><th>備註</th><th>方式</th><th>金額</th></tr></thead><tbody id="screenRows"></tbody></table></section>
+    <section class="bottom-settle"><div class="label">結算</div><div class="total-line"><span>合計總額</span><b id="screenTotalAmount">733 萬</b></div></section>
+    <div class="print-bar"><button class="print-btn" onclick="window.print()">列印報表</button></div>
   </div>
 
   <section class="print-page">
-    <div class="print-hero">
-      <div class="print-eyebrow">PAYMENT CALCULATOR</div>
-      <div class="print-logo">弘峻莊園<small>JADE GARDEN</small></div>
-    </div>
-    <div class="summary-grid">
-      <div class="summary-card"><div class="summary-label">戶別</div><div class="summary-value" id="printUnit">—</div></div>
-      <div class="summary-card"><div class="summary-label">坪數</div><div class="summary-value"><span id="printSize">—</span> 坪</div></div>
-      <div class="summary-card"><div class="summary-label">車位</div><div class="summary-value" id="printParking">—</div></div>
-      <div class="summary-card"><div class="summary-label">車位價</div><div class="summary-value"><span id="printParkingPrice">—</span> 萬</div></div>
-    </div>
+    <div class="print-hero"><div class="print-eyebrow">PAYMENT CALCULATOR</div><div class="print-logo">弘峻莊園<small>JADE GARDEN</small></div></div>
+    <div class="summary-grid"><div class="summary-card"><div class="summary-label">戶別</div><div class="summary-value" id="printUnit">—</div></div><div class="summary-card"><div class="summary-label">坪數</div><div class="summary-value"><span id="printSize">—</span> 坪</div></div><div class="summary-card"><div class="summary-label">車位</div><div class="summary-value" id="printParking">—</div></div><div class="summary-card"><div class="summary-label">車位價</div><div class="summary-value"><span id="printParkingPrice">—</span> 萬</div></div></div>
     <div class="report-head"><h1>拆款計算報表</h1><div class="report-time" id="printTime"></div></div>
-    <table class="print-table">
-      <thead><tr><th>款項</th><th>備註</th><th>拆款方式</th><th>金額</th></tr></thead>
-      <tbody id="printRows"></tbody>
-      <tfoot><tr class="print-total"><td colspan="2"><div class="total-word">合計總額<small>TOTAL</small></div></td><td class="p-ratio">100%</td><td class="p-amount" id="printTotalAmount">733 萬</td></tr></tfoot>
-    </table>
+    <table class="print-table"><thead><tr><th>款項</th><th>備註</th><th>拆款方式</th><th>金額</th></tr></thead><tbody id="printRows"></tbody><tfoot><tr class="print-total"><td colspan="2"><div class="total-word">合計總額<small>TOTAL</small></div></td><td class="p-ratio">100%</td><td class="p-amount" id="printTotalAmount">733 萬</td></tr></tfoot></table>
     <div class="print-footer"><div>所有金額單位：萬元</div><div>本報表由弘峻莊園拆款計算機產生</div></div>
   </section>
-
 <script>
-function money(n){return Number(n || 0).toLocaleString('zh-TW');}
+let parkingFloor='B1';
+function setFloor(f){parkingFloor=f;document.querySelectorAll('.floor-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.floor===f));calculate();}
+function money(n){return Number(n||0).toLocaleString('zh-TW');}
 function nowText(){const d=new Date();return `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`;}
-function safe(v){return String(v ?? '').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+function safe(v){return String(v??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
 function calculate(){
-  const unit=document.getElementById('unitInput').value.trim() || '—';
+  const unit=document.getElementById('unitInput').value.trim()||'—';
   const sizeRaw=document.getElementById('sizeInput').value;
-  const size=sizeRaw || '—';
-  const housePrice=parseFloat(document.getElementById('housePriceInput').value) || 0;
-  const parkingFloor=document.getElementById('parkingFloorInput').value || 'B1';
+  const size=sizeRaw||'—';
+  const housePrice=parseFloat(document.getElementById('housePriceInput').value)||0;
   const parkingNo=document.getElementById('parkingNumberInput').value.trim();
-  const parkingText=parkingNo ? `${parkingFloor}-${parkingNo}` : parkingFloor;
+  const parkingText=parkingNo?`${parkingFloor}-${parkingNo}`:parkingFloor;
   const parkingPriceRaw=document.getElementById('parkPriceInput').value;
-  const parkingPrice=parseFloat(parkingPriceRaw) || 0;
-  const total=housePrice + parkingPrice;
-
+  const parkingPrice=parseFloat(parkingPriceRaw)||0;
+  const total=housePrice+parkingPrice;
   const deposit=5;
-  const sign=Math.ceil(total * 0.06) - deposit;
-  const e1=Math.round(total * 0.02);
-  const e2=Math.round(total * 0.02);
-  const e3=Math.round(total * 0.02);
-  const loan=Math.floor(total * 0.80);
-  const handover=Math.ceil(total * 0.05);
-  const seal=total - (deposit + sign + e1 + e2 + e3 + loan + handover);
-
+  const sign=Math.ceil(total*.06)-deposit;
+  const e1=Math.round(total*.02), e2=Math.round(total*.02), e3=Math.round(total*.02);
+  const loan=Math.floor(total*.80);
+  const handover=Math.ceil(total*.05);
+  const seal=total-(deposit+sign+e1+e2+e3+loan+handover);
   const rows=[
     {name:'訂金',note:'—',ratio:'固定5萬',amount:deposit},
     {name:'簽約金',note:'—',ratio:'總價6%減訂金',amount:sign},
@@ -178,24 +157,16 @@ function calculate(){
     {name:'銀行貸款',note:'—',ratio:'80%',amount:loan},
     {name:'交屋保留款',note:'—',ratio:'5%',amount:handover}
   ];
-
-  const screenRows=rows.map(r=>`<tr><td class="col-name">${safe(r.name)}</td><td class="note">${safe(r.note)}</td><td class="ratio">${safe(r.ratio)}</td><td class="amount">${money(r.amount)} 萬</td></tr>`).join('');
-  const printRows=rows.map(r=>`<tr><td>${safe(r.name)}</td><td class="p-note">${safe(r.note)}</td><td class="p-ratio">${safe(r.ratio)}</td><td class="p-amount">${money(r.amount)} 萬</td></tr>`).join('');
-
-  document.getElementById('screenRows').innerHTML=screenRows;
-  document.getElementById('printRows').innerHTML=printRows;
+  document.getElementById('screenRows').innerHTML=rows.map(r=>`<tr><td>${safe(r.name)}</td><td class="note">${safe(r.note)}</td><td class="ratio">${safe(r.ratio)}</td><td class="amount">${money(r.amount)}萬</td></tr>`).join('');
+  document.getElementById('printRows').innerHTML=rows.map(r=>`<tr><td>${safe(r.name)}</td><td class="p-note">${safe(r.note)}</td><td class="p-ratio">${safe(r.ratio)}</td><td class="p-amount">${money(r.amount)} 萬</td></tr>`).join('');
   document.getElementById('screenTotalValue').textContent=money(total);
   document.getElementById('screenTotalAmount').textContent=money(total)+' 萬';
   document.getElementById('printTotalAmount').textContent=money(total)+' 萬';
-
   document.getElementById('printUnit').textContent=unit;
   document.getElementById('printSize').textContent=size;
   document.getElementById('printParking').textContent=parkingText;
-  document.getElementById('printParkingPrice').textContent=parkingPriceRaw === '' ? '—' : money(parkingPrice);
-
-  const t=nowText();
-  document.getElementById('screenTime').textContent=t;
-  document.getElementById('printTime').textContent=t;
+  document.getElementById('printParkingPrice').textContent=parkingPriceRaw===''?'—':money(parkingPrice);
+  document.getElementById('printTime').textContent=nowText();
 }
 calculate();
 </script>
