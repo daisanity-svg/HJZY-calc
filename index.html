@@ -5,117 +5,197 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>弘峻莊園-專屬拆款系統</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap');
-    :root { --brand-gold:#b5945d; --brand-dark:#1a302b; --brand-light:#f9f7f2; }
-    * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-    body, html { margin:0; padding:0; height:100%; width:100%; overflow:hidden; font-family:'Noto Serif TC',serif; background:#fff; }
-    .phone-container { height:100dvh; display:flex; flex-direction:column; }
-    .header-container { flex-shrink:0; width:100%; height:14dvh; position:relative; overflow:hidden; border-bottom:3px solid var(--brand-gold); background:radial-gradient(circle at 50% 20%, rgba(181,148,93,.35), transparent 36%), linear-gradient(135deg,#0f211e,#1a302b 55%,#0d1b18); }
-    .header-img { display:none; }
-    .header-overlay { position:absolute; inset:0; background:rgba(26,48,43,.1); display:flex; justify-content:center; align-items:center; }
-    .brand-title { margin:0; font-size:20px; letter-spacing:8px; color:var(--brand-gold); font-weight:700; text-shadow:2px 2px 4px rgba(0,0,0,.6); padding-left:8px; }
-    .input-section { padding:10px 12px; background:var(--brand-light); flex-shrink:0; border-bottom:1px solid #ddd; }
-    .grid-container { display:flex; flex-direction:column; gap:10px; }
-    .input-row { display:flex; gap:10px; }
-    .input-group { flex:1; display:flex; flex-direction:column; }
-    .input-group label { font-size:9px; color:#888; margin-bottom:2px; font-weight:bold; white-space:nowrap; }
-    .input-wrapper { display:flex; align-items:center; border-bottom:1.5px solid var(--brand-gold); background:rgba(255,255,255,.5); padding:2px 4px; }
-    .input-wrapper input { flex:1; width:100%; padding:4px 0; border:none; background:transparent; font-family:'Noto Serif TC',serif; outline:none; font-size:14px; color:var(--brand-dark); min-width:0; }
-    .unit-label { font-size:10px; color:var(--brand-gold); margin-left:2px; font-weight:bold; }
-    .total-wrapper { text-align:center; margin-top:5px; padding-top:5px; border-top:1px dashed #ccc; }
-    .total-wrapper label { font-size:9px; color:#888; display:block; }
-    .total-wrapper input { width:140px; font-size:20px; font-weight:bold; text-align:center; border:none; border-bottom:2px solid var(--brand-gold); background:rgba(181,148,93,.08); outline:none; color:var(--brand-dark); }
-    .table-section { flex-grow:1; padding:5px 12px; overflow-y:auto; }
-    table { width:100%; border-collapse:collapse; font-size:13px; }
-    td { padding:8px 4px; border-bottom:1px solid #eee; }
-    .info-row { display:none; background:#fcfcfc; }
-    .info-row td { padding:10px 5px; border-bottom:1.5px solid var(--brand-gold); color:var(--brand-dark); font-size:11px; font-weight:bold; }
-    .info-grid { display:grid; grid-template-columns:1fr 1fr; gap:5px 10px; }
-    .col-name { font-weight:700; color:var(--brand-dark); }
-    .col-ratio { color:#999; text-align:center; width:42px; font-size:10px; }
-    .col-val { text-align:right; font-weight:700; width:85px; color:#000; }
-    .total-row { background:var(--brand-dark)!important; color:#fff!important; }
-    .total-row td { padding:12px 5px; border-top:2px solid var(--brand-gold); font-weight:700; font-size:14px; }
-    .btn-section { padding:8px 20px 12px; flex-shrink:0; }
-    .print-btn { width:100%; background:var(--brand-gold); color:#fff; border:none; padding:12px; font-size:13px; letter-spacing:2px; border-radius:4px; font-family:'Noto Serif TC',serif; font-weight:bold; cursor:pointer; }
-    @page { size:A4 portrait; margin:8mm; }
-    @media print {
-      body, html { overflow:visible!important; height:auto!important; width:100%!important; background:#fff!important; }
-      .phone-container { height:auto!important; display:block!important; width:100%!important; }
-      .btn-section, .input-section { display:none!important; }
-      .header-container { height:118px!important; border-bottom-width:2px!important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-      .brand-title { font-size:18px!important; letter-spacing:6px!important; }
-      .table-section { padding:4px 8px 0!important; overflow:visible!important; }
-      table { font-size:11.5px!important; line-height:1.2!important; page-break-inside:avoid!important; }
-      td { padding:5px 4px!important; }
-      .info-row { display:table-row!important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-      .info-row td { padding:7px 5px!important; font-size:10px!important; }
-      .info-grid { gap:3px 8px!important; }
-      .col-ratio { width:38px!important; font-size:9px!important; }
-      .col-val { width:78px!important; }
-      .total-row { background:#1a302b!important; color:#fff!important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-      .total-row td { color:#fff!important; padding:8px 5px!important; font-size:13px!important; }
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&display=swap');
+    :root{
+      --brand-dark:#073f35;
+      --brand-deep:#06362f;
+      --brand-gold:#b9975b;
+      --brand-light:#f6f1e7;
+      --paper:#f6f3ec;
+      --ink:#10231f;
+      --muted:#66736f;
+      --line:#ded4c3;
+      --white:#fff;
+    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+    body,html{margin:0;padding:0;width:100%;height:100%;font-family:'Noto Serif TC',serif;background:#efe6d4;color:var(--ink);}
+    body{overflow:hidden;}
+    .app{width:min(100%,820px);height:100dvh;margin:0 auto;background:#fff;display:flex;flex-direction:column;box-shadow:0 0 28px rgba(0,0,0,.08);}
+    .hero{height:138px;flex-shrink:0;padding:26px 28px;background:linear-gradient(135deg,#073f35 0%,#073f35 58%,#052c27 100%);border-bottom:5px solid var(--brand-gold);position:relative;overflow:hidden;color:#fff;}
+    .hero:before{content:"";position:absolute;inset:-35% -12% auto auto;width:360px;height:280px;border:2px solid rgba(185,151,91,.55);transform:rotate(17deg);}
+    .hero:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 92px);opacity:.35;}
+    .eyebrow{position:relative;z-index:1;margin:0 0 10px;font-size:13px;letter-spacing:7px;color:#e8cfaa;font-weight:900;}
+    .title{position:relative;z-index:1;margin:0;font-size:42px;letter-spacing:5px;line-height:1;color:#fff;font-weight:900;}
+    .subtitle{position:relative;z-index:1;margin:12px 0 0;font-size:15px;letter-spacing:2px;color:#e6ebe8;font-weight:700;}
+    .input-section{flex-shrink:0;padding:14px 18px 12px;background:var(--paper);border-bottom:1px solid var(--line);}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;}
+    .field{min-width:0;}
+    .field label{display:flex;justify-content:space-between;align-items:center;margin:0 0 4px;font-size:12px;color:var(--muted);font-weight:900;}
+    .field label span{font-size:11px;letter-spacing:3px;color:#9a7f57;}
+    .control{display:flex;align-items:center;min-height:46px;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;}
+    .control input,.control select{width:100%;border:0;outline:none;background:transparent;padding:10px 12px;font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:var(--ink);min-width:0;}
+    .control input::placeholder{color:#b8b2a7;}
+    .control select{appearance:none;-webkit-appearance:none;}
+    .unit{padding:0 12px;color:#9b733c;font-size:15px;font-weight:900;white-space:nowrap;}
+    .total-card{margin-top:12px;border:1px solid #d9c7a5;background:linear-gradient(90deg,#f9f4e9,#f7fbf8);border-radius:12px;padding:10px 12px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;}
+    .total-label{font-size:16px;font-weight:900;color:#5c6a66;}
+    .total-sub{font-size:11px;color:#9a7f57;font-weight:700;margin-top:2px;}
+    .total-value{font-size:36px;line-height:1;font-weight:900;color:#071d19;text-align:right;}
+    .total-value small{font-size:16px;color:#9b733c;margin-left:5px;}
+    .table-section{flex:1;overflow:auto;padding:12px 18px 16px;background:#fff;}
+    .screen-title{display:flex;justify-content:space-between;align-items:flex-end;margin:2px 0 10px;}
+    .screen-title h2{margin:0;font-size:19px;letter-spacing:1px;color:var(--ink);}
+    .screen-title .time{font-size:10px;color:#888;font-weight:700;}
+    table{width:100%;border-collapse:collapse;font-size:13px;}
+    th,td{border:1px solid #ebe5da;padding:9px 10px;text-align:left;}
+    th{background:#faf8f2;color:#4d5b57;font-weight:900;}
+    td.note{font-size:11px;color:#4d5b57;font-weight:700;}
+    td.ratio{text-align:right;font-weight:900;width:110px;}
+    td.amount{text-align:right;font-weight:900;font-size:18px;width:110px;}
+    .screen-total td{background:var(--brand-dark)!important;color:#fff!important;border-top:4px solid var(--brand-gold);font-size:18px;font-weight:900;}
+    .screen-total .amount{font-size:26px;}
+    .btn-section{flex-shrink:0;padding:10px 18px 14px;background:#fff;border-top:1px solid var(--line);}
+    .print-btn{width:100%;border:0;border-radius:10px;background:var(--brand-gold);color:#fff;padding:14px;font-family:'Noto Serif TC',serif;font-size:14px;letter-spacing:3px;font-weight:900;cursor:pointer;}
+    .print-page{display:none;}
+    @page{size:A4 portrait;margin:0;}
+    @media print{
+      body,html{width:210mm;height:297mm;background:#fff!important;overflow:visible!important;}
+      .app{display:none!important;}
+      .print-page{display:block!important;width:210mm;height:297mm;background:var(--paper);padding:11mm 14mm 13mm;position:relative;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .print-hero{height:36mm;background:linear-gradient(135deg,#073f35,#06352f);border-bottom:2mm solid var(--brand-gold);position:relative;overflow:hidden;color:#fff;padding:7mm 8mm;}
+      .print-hero:before{content:"";position:absolute;right:-6mm;top:-16mm;width:70mm;height:54mm;border:1px solid rgba(185,151,91,.55);transform:rotate(16deg);}
+      .print-hero:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 25mm);}
+      .print-eyebrow{position:relative;z-index:1;font-size:8.5pt;letter-spacing:4px;color:#e8cfaa;font-weight:900;margin-bottom:6mm;}
+      .print-logo{position:relative;z-index:1;text-align:center;margin-top:-2mm;font-size:25pt;letter-spacing:4px;font-weight:900;line-height:1;color:#fff;}
+      .print-logo small{display:block;margin-top:2mm;font-size:8pt;letter-spacing:7px;color:#e8e8e1;}
+      .summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3.5mm;margin-top:5mm;}
+      .summary-card{background:#fff;border:1px solid #ddd4c8;border-radius:2mm;padding:3mm 4mm;min-height:13mm;}
+      .summary-label{font-size:7.5pt;color:#5e6966;font-weight:900;margin-bottom:1.5mm;}
+      .summary-value{font-size:11pt;color:#0b201c;font-weight:900;}
+      .report-head{display:flex;align-items:flex-end;justify-content:space-between;margin:8mm 0 3mm;}
+      .report-head h1{margin:0;font-size:16pt;letter-spacing:1px;color:#0b201c;font-weight:900;}
+      .report-time{font-size:8pt;color:#666;font-weight:900;}
+      .print-table{width:100%;border-collapse:collapse;background:#fff;font-size:9.5pt;}
+      .print-table th,.print-table td{border:1px solid #ded8ce;padding:4.1mm 3.5mm;}
+      .print-table th{background:#f8f5ed;color:#293c38;font-weight:900;text-align:left;}
+      .print-table td{font-weight:900;color:#1b2c28;}
+      .print-table .p-note{font-size:8pt;color:#43524f;font-weight:700;}
+      .print-table .p-ratio{text-align:right;width:26mm;font-size:9pt;}
+      .print-table .p-amount{text-align:right;width:26mm;font-size:15pt;font-weight:900;white-space:nowrap;}
+      .print-total td{background:#073f35!important;color:#fff!important;border-top:2mm solid var(--brand-gold)!important;padding:5mm 3.5mm!important;}
+      .print-total .total-word{font-size:13pt;line-height:1.05;}
+      .print-total .total-word small{display:block;font-size:6.5pt;letter-spacing:1px;margin-top:1mm;color:#f1eadc;}
+      .print-total .p-ratio{font-size:11pt;color:#fff!important;}
+      .print-total .p-amount{font-size:20pt;color:#fff!important;}
+      .print-footer{position:absolute;left:14mm;right:14mm;bottom:13mm;display:flex;justify-content:space-between;font-size:7.5pt;color:#56625f;font-weight:700;}
     }
   </style>
 </head>
 <body>
-<div class="phone-container">
-  <div class="header-container">
-    <div class="header-overlay"><h1 class="brand-title">弘峻莊園</h1></div>
+  <div class="app">
+    <header class="hero">
+      <div class="eyebrow">PAYMENT CALCULATOR</div>
+      <h1 class="title">弘峻莊園</h1>
+      <div class="subtitle">專屬拆款計算機</div>
+    </header>
+    <section class="input-section">
+      <div class="grid">
+        <div class="field"><label>戶別 <span>UNIT</span></label><div class="control"><input id="unitInput" type="text" placeholder="例如 A1-5F" oninput="calculate()"></div></div>
+        <div class="field"><label>坪數 <span>SIZE</span></label><div class="control"><input id="sizeInput" type="number" placeholder="0.00" step="0.01" oninput="calculate()"><b class="unit">坪</b></div></div>
+        <div class="field"><label>房屋價格 <span>HOUSE</span></label><div class="control"><input id="housePriceInput" type="number" value="733" placeholder="0" inputmode="numeric" oninput="calculate()"><b class="unit">萬</b></div></div>
+        <div class="field"><label>車位樓層 <span>FLOOR</span></label><div class="control"><select id="parkingFloorInput" onchange="calculate()"><option value="B1">B1</option><option value="B2">B2</option></select></div></div>
+        <div class="field"><label>車位編號 <span>NUMBER</span></label><div class="control"><input id="parkingNumberInput" type="text" placeholder="例如 321" oninput="calculate()"></div></div>
+        <div class="field"><label>車位價格 <span>PRICE</span></label><div class="control"><input id="parkPriceInput" type="number" placeholder="0" inputmode="numeric" oninput="calculate()"><b class="unit">萬</b></div></div>
+      </div>
+      <div class="total-card">
+        <div><div class="total-label">物業總額</div><div class="total-sub">自動帶入：房屋價格＋車位價格</div></div>
+        <div class="total-value"><span id="screenTotalValue">733</span><small>萬</small></div>
+      </div>
+    </section>
+    <section class="table-section">
+      <div class="screen-title"><h2>拆款計算明細</h2><span class="time" id="screenTime"></span></div>
+      <table>
+        <thead><tr><th>款項</th><th>備註</th><th>拆款方式</th><th>金額</th></tr></thead>
+        <tbody id="screenRows"></tbody>
+        <tfoot><tr class="screen-total"><td colspan="2">合計總額 TOTAL</td><td class="ratio">100%</td><td class="amount" id="screenTotalAmount">733 萬</td></tr></tfoot>
+      </table>
+    </section>
+    <div class="btn-section"><button class="print-btn" onclick="window.print()">產生正式報表 | PRINT</button></div>
   </div>
-  <div class="input-section">
-    <div class="grid-container">
-      <div class="input-row">
-        <div class="input-group"><label>戶別 UNIT</label><div class="input-wrapper"><input type="text" id="unitInput" placeholder="輸入戶別" oninput="calculate()"></div></div>
-        <div class="input-group"><label>戶別坪數 SIZE</label><div class="input-wrapper"><input type="number" id="sizeInput" placeholder="0.00" oninput="calculate()" step="0.01"><span class="unit-label">坪</span></div></div>
-      </div>
-      <div class="input-row">
-        <div class="input-group"><label>房屋總價 HOUSE PRICE</label><div class="input-wrapper"><input type="number" id="housePriceInput" value="733" placeholder="0" oninput="calculate()" pattern="[0-9]*" inputmode="numeric"><span class="unit-label">萬</span></div></div>
-        <div class="input-group"><label>車位價格 PARKING PRICE</label><div class="input-wrapper"><input type="number" id="parkPriceInput" placeholder="0" oninput="calculate()" pattern="[0-9]*" inputmode="numeric"><span class="unit-label">萬</span></div></div>
-      </div>
-      <div class="input-row">
-        <div class="input-group"><label>車位 PARKING</label><div class="input-wrapper"><input type="text" id="parkInput" placeholder="輸入車位" oninput="calculate()"></div></div>
-      </div>
+
+  <section class="print-page">
+    <div class="print-hero">
+      <div class="print-eyebrow">PAYMENT CALCULATOR</div>
+      <div class="print-logo">弘峻莊園<small>JADE GARDEN</small></div>
     </div>
-    <div class="total-wrapper"><label>物業總額（房屋總價＋車位價格／萬元）</label><input type="number" id="totalPrice" value="733" readonly tabindex="-1" pattern="[0-9]*" inputmode="numeric"></div>
-  </div>
-  <div class="table-section">
-    <table><tbody id="rowList"></tbody><tfoot><tr class="total-row"><td>合計總額 (TOTAL)</td><td class="col-ratio">100%</td><td class="col-val" id="totalDisplay" style="color:white;">0 萬</td></tr></tfoot></table>
-  </div>
-  <div class="btn-section"><button class="print-btn" onclick="window.print()">產生正式報表 | PRINT</button></div>
-</div>
+    <div class="summary-grid">
+      <div class="summary-card"><div class="summary-label">戶別</div><div class="summary-value" id="printUnit">—</div></div>
+      <div class="summary-card"><div class="summary-label">坪數</div><div class="summary-value"><span id="printSize">—</span> 坪</div></div>
+      <div class="summary-card"><div class="summary-label">車位</div><div class="summary-value" id="printParking">—</div></div>
+      <div class="summary-card"><div class="summary-label">車位價</div><div class="summary-value"><span id="printParkingPrice">—</span> 萬</div></div>
+    </div>
+    <div class="report-head"><h1>拆款計算報表</h1><div class="report-time" id="printTime"></div></div>
+    <table class="print-table">
+      <thead><tr><th>款項</th><th>備註</th><th>拆款方式</th><th>金額</th></tr></thead>
+      <tbody id="printRows"></tbody>
+      <tfoot><tr class="print-total"><td colspan="2"><div class="total-word">合計總額<small>TOTAL</small></div></td><td class="p-ratio">100%</td><td class="p-amount" id="printTotalAmount">733 萬</td></tr></tfoot>
+    </table>
+    <div class="print-footer"><div>所有金額單位：萬元</div><div>本報表由弘峻莊園拆款計算機產生</div></div>
+  </section>
+
 <script>
+function money(n){return Number(n || 0).toLocaleString('zh-TW');}
+function nowText(){const d=new Date();return `${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`;}
+function safe(v){return String(v ?? '').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
 function calculate(){
-  const u=document.getElementById('unitInput').value||'—';
-  const s=document.getElementById('sizeInput').value||'—';
-  const p=document.getElementById('parkInput').value||'—';
-  const housePriceRaw=document.getElementById('housePriceInput').value;
-  const parkPriceRaw=document.getElementById('parkPriceInput').value;
-  const housePrice=parseFloat(housePriceRaw)||0;
-  const parkPrice=parseFloat(parkPriceRaw)||0;
-  const pp=parkPriceRaw!==''?parkPrice.toLocaleString():'—';
-  const val=housePrice+parkPrice;
-  document.getElementById('totalPrice').value=val;
-  const dep=5;
-  const sign=Math.ceil(val*.06)-dep;
-  const e1=Math.round(val*.02), e2=Math.round(val*.02), e3=Math.round(val*.02);
-  const bank=Math.floor(val*.80);
-  const handOver=Math.ceil(val*.05);
-  const seal=val-(dep+sign+e1+e2+e3+bank+handOver);
-  const items=[
-    {n:'訂金',r:'固定',v:dep},
-    {n:'簽約金',r:'6%',v:sign},
-    {n:'工程款第一期 - 第一區屋頂版完成',r:'2%',v:e1},
-    {n:'工程款第二期 - 第二區屋頂版完成',r:'2%',v:e2},
-    {n:'工程款第三期 - 第三區屋頂版完成',r:'2%',v:e3},
-    {n:'備證用印款',r:'3%',v:seal},
-    {n:'銀行貸款',r:'80%',v:bank},
-    {n:'交屋保留款',r:'5%',v:handOver}
+  const unit=document.getElementById('unitInput').value.trim() || '—';
+  const sizeRaw=document.getElementById('sizeInput').value;
+  const size=sizeRaw || '—';
+  const housePrice=parseFloat(document.getElementById('housePriceInput').value) || 0;
+  const parkingFloor=document.getElementById('parkingFloorInput').value || 'B1';
+  const parkingNo=document.getElementById('parkingNumberInput').value.trim();
+  const parkingText=parkingNo ? `${parkingFloor}-${parkingNo}` : parkingFloor;
+  const parkingPriceRaw=document.getElementById('parkPriceInput').value;
+  const parkingPrice=parseFloat(parkingPriceRaw) || 0;
+  const total=housePrice + parkingPrice;
+
+  const deposit=5;
+  const sign=Math.ceil(total * 0.06) - deposit;
+  const e1=Math.round(total * 0.02);
+  const e2=Math.round(total * 0.02);
+  const e3=Math.round(total * 0.02);
+  const loan=Math.floor(total * 0.80);
+  const handover=Math.ceil(total * 0.05);
+  const seal=total - (deposit + sign + e1 + e2 + e3 + loan + handover);
+
+  const rows=[
+    {name:'訂金',note:'—',ratio:'固定5萬',amount:deposit},
+    {name:'簽約金',note:'—',ratio:'總價6%減訂金',amount:sign},
+    {name:'工程期款第一期',note:'第一區屋頂版完成，開工後約第19個月',ratio:'2%',amount:e1},
+    {name:'工程期款第二期',note:'第二區屋頂版完成，開工後約第26個月',ratio:'2%',amount:e2},
+    {name:'工程期款第三期',note:'第三區屋頂版完成，開工後約第32個月',ratio:'2%',amount:e3},
+    {name:'備證用印款',note:'宜蘭落架完成，開工後約第40個月',ratio:'3%',amount:seal},
+    {name:'銀行貸款',note:'—',ratio:'80%',amount:loan},
+    {name:'交屋保留款',note:'—',ratio:'5%',amount:handover}
   ];
-  let h=`<tr class="info-row"><td colspan="3"><div class="info-grid"><div><span style="color:#888">戶別：</span>${u}</div><div><span style="color:#888">坪數：</span>${s} 坪</div><div><span style="color:#888">房屋總價：</span>${housePrice.toLocaleString()} 萬</div><div><span style="color:#888">車位價：</span>${pp} 萬</div><div><span style="color:#888">車位：</span>${p}</div><div><span style="color:#888">物業總額：</span>${val.toLocaleString()} 萬</div></div></td></tr>`;
-  items.forEach(i=>{h+=`<tr><td class="col-name">${i.n}</td><td class="col-ratio">${i.r}</td><td class="col-val">${i.v.toLocaleString()} 萬</td></tr>`});
-  document.getElementById('rowList').innerHTML=h;
-  document.getElementById('totalDisplay').innerText=val.toLocaleString()+' 萬';
+
+  const screenRows=rows.map(r=>`<tr><td class="col-name">${safe(r.name)}</td><td class="note">${safe(r.note)}</td><td class="ratio">${safe(r.ratio)}</td><td class="amount">${money(r.amount)} 萬</td></tr>`).join('');
+  const printRows=rows.map(r=>`<tr><td>${safe(r.name)}</td><td class="p-note">${safe(r.note)}</td><td class="p-ratio">${safe(r.ratio)}</td><td class="p-amount">${money(r.amount)} 萬</td></tr>`).join('');
+
+  document.getElementById('screenRows').innerHTML=screenRows;
+  document.getElementById('printRows').innerHTML=printRows;
+  document.getElementById('screenTotalValue').textContent=money(total);
+  document.getElementById('screenTotalAmount').textContent=money(total)+' 萬';
+  document.getElementById('printTotalAmount').textContent=money(total)+' 萬';
+
+  document.getElementById('printUnit').textContent=unit;
+  document.getElementById('printSize').textContent=size;
+  document.getElementById('printParking').textContent=parkingText;
+  document.getElementById('printParkingPrice').textContent=parkingPriceRaw === '' ? '—' : money(parkingPrice);
+
+  const t=nowText();
+  document.getElementById('screenTime').textContent=t;
+  document.getElementById('printTime').textContent=t;
 }
 calculate();
 </script>
