@@ -17,15 +17,18 @@ jobs:
           from pathlib import Path
           p=Path('index.html')
           s=p.read_text(encoding='utf-8')
-          s=s.replace('<section class="print-page"><div class="print-brand-hero"><div class="brand-soft-dot"></div><div class="brand-mark-text"></div><div class="brand-title-print">弘峻莊園</div><div class="brand-subtitle-print">JADE GARDEN</div></div><div class="print-doc-head"><div><div class="doc-title">付款試算單</div><div class="doc-subtitle">Payment Estimate</div></div><div class="report-time" id="printTime"></div></div>', '<section class="print-page"><div class="print-brand-hero"></div>')
-          s=s.replace('<div class="report-head"><h1>拆款計算明細</h1></div>', '<div class="report-head"><h1>拆款計算明細</h1><div class="report-time" id="printTime"></div></div>')
-          s=s.replace('background:linear-gradient(180deg,#dfe900 0%,#d7e100 100%);text-align:center;color:#1c1a17;box-shadow:0 1.2mm 5mm rgba(40,65,19,.08)}', 'background:#dce400 url(assets/print-header.svg?v=20260616) center/cover no-repeat;text-align:center;color:#1c1a17;box-shadow:0 1.2mm 5mm rgba(40,65,19,.08)}')
-          s=s.replace('.print-brand-hero:before,.print-brand-hero:after{content:"";', '.print-brand-hero:before,.print-brand-hero:after{content:none;')
-          s=s.replace('.brand-soft-dot{position:absolute;', '.brand-soft-dot{display:none!important;position:absolute;')
-          s=s.replace('.brand-mark-text{position:relative;', '.brand-mark-text{display:none!important;position:relative;')
-          s=s.replace('.brand-title-print{position:relative;', '.brand-title-print{display:none!important;position:relative;')
-          s=s.replace('.brand-subtitle-print{position:relative;', '.brand-subtitle-print{display:none!important;position:relative;')
+          # Replace the generated CSS print header image cache key. This avoids iOS/Safari keeping the old blue blurred SVG render.
+          s=s.replace('assets/print-header.svg?v=20260616-safe4', 'assets/print-header.svg?v=20260616-safe10')
+          s=s.replace('assets/print-header.svg?v=20260616-safe9', 'assets/print-header.svg?v=20260616-safe10')
+          s=s.replace('assets/print-header.svg?v=20260616-safe8', 'assets/print-header.svg?v=20260616-safe10')
+          s=s.replace('assets/print-header.svg?v=20260616-safe7', 'assets/print-header.svg?v=20260616-safe10')
+          s=s.replace('assets/print-header.svg?v=20260616-safe6', 'assets/print-header.svg?v=20260616-safe10')
+          s=s.replace('assets/print-header.svg?v=20260616-safe5', 'assets/print-header.svg?v=20260616-safe10')
+          s=s.replace('assets/print-header.svg?v=20260616', 'assets/print-header.svg?v=20260616-safe10')
+          # Ensure the old in-DOM title row remains hidden because the uploaded header already contains the title.
           s=s.replace('.print-doc-head{display:flex;', '.print-doc-head{display:none!important;')
+          # Ensure print pseudo-elements do not overlay the uploaded/header SVG.
+          s=s.replace('.print-brand-hero:before,.print-brand-hero:after{content:"";', '.print-brand-hero:before,.print-brand-hero:after{content:none;')
           p.write_text(s, encoding='utf-8')
           PY
       - name: Commit changes
@@ -33,4 +36,4 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add index.html
-          if git diff --cached --quiet; then echo no changes; else git commit -m "Use uploaded print header" && git push; fi
+          if git diff --cached --quiet; then echo no changes; else git commit -m "Refresh print header cache key" && git push; fi
