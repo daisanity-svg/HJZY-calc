@@ -52,7 +52,7 @@
     .hero{
       height:134px;
       flex-shrink:0;
-      padding:20px 24px;
+      padding:17px 24px 20px;
       position:relative;
       overflow:hidden;
       color:var(--ink);
@@ -67,9 +67,9 @@
     .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none;mix-blend-mode:multiply;}
     .hero:before{left:-62px;bottom:-76px;width:210px;height:210px;background:conic-gradient(from 45deg,rgba(117,255,96,.82),rgba(0,86,31,.84),rgba(229,255,62,.55),rgba(26,126,44,.88),rgba(117,255,96,.82));opacity:.9;}
     .hero:after{right:-62px;bottom:-92px;width:270px;height:270px;background:conic-gradient(from 25deg,rgba(126,255,112,.76),rgba(15,103,38,.88),rgba(232,255,80,.56),rgba(40,154,58,.86),rgba(126,255,112,.76));opacity:.92;}
-    .brand-mark{position:relative;z-index:1;margin:0 auto 5px;width:40px;height:25px;display:grid;place-items:center;color:var(--gold);font-size:24px;line-height:1;}
-    .brand-mark:before{content:"✤";font-weight:900;text-shadow:0 1px 0 rgba(255,255,255,.35);}
-    .eyebrow{position:relative;z-index:1;margin:0 0 8px;font-size:12px;letter-spacing:5px;color:#90651f;font-weight:900;text-transform:uppercase;}
+    .brand-mark{position:relative;z-index:1;margin:0 auto 4px;width:42px;height:42px;display:grid;place-items:center;}
+    .brand-mark img{width:42px;height:42px;display:block;object-fit:contain;filter:drop-shadow(0 1px 0 rgba(255,255,255,.32));}
+    .eyebrow{position:relative;z-index:1;margin:0 0 7px;font-size:12px;letter-spacing:5px;color:#90651f;font-weight:900;text-transform:uppercase;}
     .title{position:relative;z-index:1;margin:0;text-align:left;font-size:34px;letter-spacing:5px;line-height:1;color:#231f1c;font-weight:900;text-shadow:0 1px 0 rgba(255,255,255,.25);}
     .subtitle{position:relative;z-index:1;margin:9px 0 0;font-size:13px;letter-spacing:2px;color:#45523c;font-weight:900;}
     .input-section{flex-shrink:0;padding:14px 16px 12px;background:linear-gradient(180deg,rgba(255,255,255,.84),rgba(250,252,235,.94));border-bottom:1px solid var(--line);}
@@ -142,9 +142,10 @@
       body,html{width:210mm;height:297mm;background:#fff!important;overflow:visible!important}
       .app{display:none!important}
       .print-page{display:block!important;width:210mm;height:297mm;background:#fffdf2;padding:8mm 12mm 10mm;position:relative;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
-      .print-hero{height:35mm;background:radial-gradient(circle at 5% 100%,rgba(8,85,33,.92) 0 13%,transparent 14%),radial-gradient(circle at 93% 100%,rgba(13,92,35,.92) 0 16%,transparent 17%),linear-gradient(135deg,#e0e700,#d5df00);border-bottom:1.5mm solid var(--gold);position:relative;overflow:hidden;color:#231f1c;padding:5mm 7mm}
-      .print-eyebrow{position:relative;z-index:1;font-size:8pt;letter-spacing:4px;color:#90651f;font-weight:900;margin-bottom:8mm}
-      .print-logo{position:relative;z-index:1;text-align:center;margin-top:2mm;font-size:24pt;letter-spacing:4px;font-weight:900;line-height:1;color:#231f1c}
+      .print-hero{height:35mm;background:radial-gradient(circle at 5% 100%,rgba(8,85,33,.92) 0 13%,transparent 14%),radial-gradient(circle at 93% 100%,rgba(13,92,35,.92) 0 16%,transparent 17%),linear-gradient(135deg,#e0e700,#d5df00);border-bottom:1.5mm solid var(--gold);position:relative;overflow:hidden;color:#231f1c;padding:4mm 7mm 5mm}
+      .print-crest{position:relative;z-index:1;display:block;width:16mm;height:16mm;object-fit:contain;margin:0 auto 1.5mm;filter:drop-shadow(0 .3mm 0 rgba(255,255,255,.28))}
+      .print-eyebrow{position:relative;z-index:1;font-size:8pt;letter-spacing:4px;color:#90651f;font-weight:900;margin-bottom:4mm}
+      .print-logo{position:relative;z-index:1;text-align:center;margin-top:0;font-size:24pt;letter-spacing:4px;font-weight:900;line-height:1;color:#231f1c}
       .print-logo small{display:block;margin-top:2mm;font-size:8pt;letter-spacing:7px;color:#231f1c}
       .summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin-top:4mm}
       .summary-card{background:#fff;border:1px solid #dfe7b9;border-radius:2mm;padding:2.7mm 3.5mm;min-height:12mm}
@@ -170,7 +171,7 @@
 <body>
   <div class="app">
     <header class="hero">
-      <div class="brand-mark"></div>
+      <div class="brand-mark"><img src="assets/emblem.svg" alt="弘峻莊園家徽"></div>
       <div class="eyebrow">PAYMENT CALCULATOR</div>
       <h1 class="title">弘峻莊園</h1>
       <div class="subtitle">JADE GARDEN｜專屬拆款計算機</div>
@@ -207,7 +208,7 @@
   </div>
 
   <section class="print-page">
-    <div class="print-hero"><div class="print-eyebrow">PAYMENT CALCULATOR</div><div class="print-logo">弘峻莊園<small>JADE GARDEN</small></div></div>
+    <div class="print-hero"><img class="print-crest" src="assets/emblem.svg" alt="弘峻莊園家徽"><div class="print-eyebrow">PAYMENT CALCULATOR</div><div class="print-logo">弘峻莊園<small>JADE GARDEN</small></div></div>
     <div class="summary-grid">
       <div class="summary-card"><div class="summary-label">戶別</div><div class="summary-value" id="printUnit">—</div></div>
       <div class="summary-card"><div class="summary-label">坪數</div><div class="summary-value"><span id="printSize">—</span> 坪</div></div>
