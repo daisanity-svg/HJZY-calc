@@ -48,16 +48,7 @@
       position:relative;
       overflow:hidden;
     }
-    .app:before{
-      content:"";
-      position:absolute;
-      inset:auto -70px -90px auto;
-      width:260px;
-      height:260px;
-      border-radius:50%;
-      background:radial-gradient(circle,rgba(124,235,102,.26),transparent 64%);
-      pointer-events:none;
-    }
+    .app:before{content:"";position:absolute;inset:auto -70px -90px auto;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(124,235,102,.26),transparent 64%);pointer-events:none;}
     .hero{
       height:134px;
       flex-shrink:0;
@@ -152,7 +143,6 @@
       .app{display:none!important}
       .print-page{display:block!important;width:210mm;height:297mm;background:#fffdf2;padding:8mm 12mm 10mm;position:relative;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
       .print-hero{height:35mm;background:radial-gradient(circle at 5% 100%,rgba(8,85,33,.92) 0 13%,transparent 14%),radial-gradient(circle at 93% 100%,rgba(13,92,35,.92) 0 16%,transparent 17%),linear-gradient(135deg,#e0e700,#d5df00);border-bottom:1.5mm solid var(--gold);position:relative;overflow:hidden;color:#231f1c;padding:5mm 7mm}
-      .print-hero:before{content:"✤";position:absolute;top:5mm;left:50%;transform:translateX(-50%);font-size:18pt;color:var(--gold)}
       .print-eyebrow{position:relative;z-index:1;font-size:8pt;letter-spacing:4px;color:#90651f;font-weight:900;margin-bottom:8mm}
       .print-logo{position:relative;z-index:1;text-align:center;margin-top:2mm;font-size:24pt;letter-spacing:4px;font-weight:900;line-height:1;color:#231f1c}
       .print-logo small{display:block;margin-top:2mm;font-size:8pt;letter-spacing:7px;color:#231f1c}
@@ -170,8 +160,7 @@
       .print-table .p-ratio{text-align:right;width:32mm;font-size:8pt;line-height:1.25;white-space:nowrap}
       .print-table .p-amount{text-align:right;width:24mm;font-size:12.5pt;font-weight:900;white-space:nowrap}
       .print-total td{background:linear-gradient(135deg,#236238,#0f4c2b)!important;color:#fff!important;border-top:1.7mm solid var(--gold)!important;padding:3.8mm 3mm!important}
-      .print-total .total-word{font-size:12pt;line-height:1.05}
-      .print-total .total-word small{display:block;font-size:6.2pt;letter-spacing:1px;margin-top:1mm;color:#eef5df}
+      .print-total .total-word{font-size:13pt;line-height:1.05}
       .print-total .p-ratio{font-size:10pt;color:#fff!important}
       .print-total .p-amount{font-size:18pt;color:#fff!important}
       .print-footer{position:absolute;left:12mm;right:12mm;bottom:8mm;display:flex;justify-content:space-between;font-size:7pt;color:#56625f;font-weight:700}
@@ -210,11 +199,11 @@
       <table>
         <thead><tr><th>款項</th><th>拆款方式</th><th>金額</th></tr></thead>
         <tbody id="screenRows"></tbody>
-        <tfoot><tr class="screen-total"><td>合計總額 TOTAL</td><td class="ratio">100%</td><td class="amount" id="screenTotalAmount">733 萬</td></tr></tfoot>
+        <tfoot><tr class="screen-total"><td>總價</td><td class="ratio">100%</td><td class="amount" id="screenTotalAmount">733 萬</td></tr></tfoot>
       </table>
     </section>
 
-    <div class="btn-section"><button class="print-btn" onclick="window.print()">產生正式報表 | PRINT</button></div>
+    <div class="btn-section"><button id="printBtn" class="print-btn" type="button">產生正式報表 | PRINT</button></div>
   </div>
 
   <section class="print-page">
@@ -229,7 +218,7 @@
     <table class="print-table">
       <thead><tr><th>款項</th><th>拆款方式</th><th>金額</th></tr></thead>
       <tbody id="printRows"></tbody>
-      <tfoot><tr class="print-total"><td><div class="total-word">合計總額<small>TOTAL</small></div></td><td class="p-ratio">100%</td><td class="p-amount" id="printTotalAmount">733 萬</td></tr></tfoot>
+      <tfoot><tr class="print-total"><td><div class="total-word">總價</div></td><td class="p-ratio">100%</td><td class="p-amount" id="printTotalAmount">733 萬</td></tr></tfoot>
     </table>
     <div class="print-footer"><div>所有金額單位：萬元</div><div>本報表由弘峻莊園拆款計算機產生</div></div>
   </section>
@@ -248,6 +237,10 @@ function nowText(){
 }
 function safe(v){return String(v??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
 function renderRatio(text){return safe(text);}
+function printReport(){
+  calculate();
+  window.print();
+}
 function calculate(){
   const unit=document.getElementById('unitInput').value.trim()||'—';
   const sizeRaw=document.getElementById('sizeInput').value;
@@ -293,6 +286,7 @@ function calculate(){
   document.getElementById('screenTime').textContent=t;
   document.getElementById('printTime').textContent=t;
 }
+document.getElementById('printBtn').addEventListener('click', printReport);
 calculate();
 </script>
 </body>
